@@ -28,4 +28,13 @@
       </PackageReference>
     </ItemGroup>
 
+    <Target Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
+        <ReadLinesFromFile File="../CHANGELOG.md">
+            <Output TaskParameter="Lines" ItemName="ReleaseNoteLines" />
+        </ReadLinesFromFile>
+        <PropertyGroup>
+            <PackageReleaseNotes>@(ReleaseNoteLines, '%0a')</PackageReleaseNotes>
+        </PropertyGroup>
+    </Target>
+
 </Project>

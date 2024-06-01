@@ -1,8 +1,4 @@
-﻿using DartLang.PubSpec.Serialization;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
-
-namespace DartLang.PubSpec.Tests;
+﻿namespace DartLang.PubSpec.Tests;
 
 public sealed class DeserializesExamples
 {
@@ -29,20 +25,10 @@ public sealed class DeserializesExamples
 
     [Test]
     [TestCaseSource(nameof(ExamplesProvider))]
-    public void TestDeserializesExample(string packageName, string document)
+    public void TestDeserializesExample(string packageName, string yaml)
     {
-        // Arrange
-        var input = new StringReader(document);
-        var deserializer = new DeserializerBuilder()
-            .IgnoreUnmatchedProperties()
-            .WithNamingConvention(UnderscoredNamingConvention.Instance)
-            .WithPubSpecConverters()
-            .Build();
+        var pubspec = PubSpec.Deserialize(yaml);
 
-        // Act
-        var pubspec = deserializer.Deserialize<PubSpec>(input);
-
-        // Assert
         Assert.That(pubspec, Is.Not.Null);
         Assert.That(pubspec.Name, Is.EqualTo(packageName));
     }
