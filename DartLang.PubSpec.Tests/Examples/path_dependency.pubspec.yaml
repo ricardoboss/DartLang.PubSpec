@@ -1,0 +1,5 @@
+name: path_dependency
+
+dev_dependencies:
+  path_dependency_test:
+    path: ../path_dependency_test

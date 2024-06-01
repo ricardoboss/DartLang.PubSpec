@@ -1,0 +1,6 @@
+name: hosted_dependency
+
+dependencies:
+  kittens:
+    hosted: https://kittens.com/kittens
+    version: ^1.0.0

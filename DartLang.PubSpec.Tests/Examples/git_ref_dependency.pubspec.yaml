@@ -1,0 +1,8 @@
+name: git_ref_dependency
+
+dependencies:
+  kittens:
+    git:
+      url: https://kittens.com/kittens
+      ref: master
+      path: kittens
