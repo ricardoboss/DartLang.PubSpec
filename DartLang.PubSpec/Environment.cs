@@ -1,10 +1,10 @@
-﻿using Semver;
+using Semver;
 
 namespace DartLang.PubSpec;
 
 public class Environment
 {
-    public SemVersionRange? Sdk { get; init; }
+	public SemVersionRange? Sdk { get; init; }
 
-    public SemVersionRange? Flutter { get; init; }
+	public SemVersionRange? Flutter { get; init; }
 }

@@ -1,6 +1,6 @@
-﻿namespace DartLang.PubSpec.Dependencies;
+namespace DartLang.PubSpec.Dependencies;
 
 public class PathDependency : Dependency
 {
-    public required string Path { get; init; }
+	public required string Path { get; init; }
 }

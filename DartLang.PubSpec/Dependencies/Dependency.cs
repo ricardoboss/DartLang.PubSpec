@@ -1,6 +1,6 @@
-﻿namespace DartLang.PubSpec.Dependencies;
+namespace DartLang.PubSpec.Dependencies;
 
 public abstract class Dependency
 {
-    
+
 }
