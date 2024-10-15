@@ -1,20 +1,22 @@
 using DartLang.PubSpec.Serialization;
+using DartLang.PubSpec.Serialization.Yaml.Converters;
+using DartLang.PubSpec.Serialization.Yaml.Extensions;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace DartLang.PubSpec.Tests.Serialization;
+namespace DartLang.PubSpec.Serialization.Yaml.Tests.Serialization;
 
-public sealed class PlatformsConverterTest
+public sealed class PlatformsYamlConverterTest
 {
 	[Test]
 	public void TestConvertPlatforms()
 	{
 		// Arrange
 		const string yaml = """
-                            android:
-                            ios:
-                            web:
-                            """;
+		                    android:
+		                    ios:
+		                    web:
+		                    """;
 
 		var input = new StringReader(yaml);
 		var deserializer = new DeserializerBuilder()
@@ -42,13 +44,13 @@ public sealed class PlatformsConverterTest
 	public void TestConvertPlatformsFromPubSpec()
 	{
 		const string yaml = """
-                            name: platforms
+		                    name: platforms
 
-                            platforms:
-                              android:
-                              ios:
-                              web:
-                            """;
+		                    platforms:
+		                      android:
+		                      ios:
+		                      web:
+		                    """;
 
 		var input = new StringReader(yaml);
 		var deserializer = new DeserializerBuilder()

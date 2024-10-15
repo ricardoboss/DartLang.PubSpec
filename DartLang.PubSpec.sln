@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartLang.PubSpec.Tests", "DartLang.PubSpec.Tests\DartLang.PubSpec.Tests.csproj", "{97E25B38-3D6D-4F89-8086-2D9FDF1DF67F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartLang.PubSpec.Serialization.Yaml.Tests", "DartLang.PubSpec.Serialization.Yaml.Tests\DartLang.PubSpec.Serialization.Yaml.Tests.csproj", "{97E25B38-3D6D-4F89-8086-2D9FDF1DF67F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartLang.PubSpec", "DartLang.PubSpec\DartLang.PubSpec.csproj", "{015F3E27-E0EF-434D-8923-B75DB48AB8D7}"
 EndProject
@@ -21,6 +21,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\publish.yml = .github\workflows\publish.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartLang.PubSpec.Serialization.Json", "DartLang.PubSpec.Serialization.Json\DartLang.PubSpec.Serialization.Json.csproj", "{4DEBDCA3-1FAB-44D4-AAC5-E7F4ED8EC646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartLang.PubSpec.Serialization.Yaml", "DartLang.PubSpec.Serialization.Yaml\DartLang.PubSpec.Serialization.Yaml.csproj", "{C65F5A61-B150-4A67-A880-8FCEE55E25E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DartLang.PubSpec.Serialization.Json.Tests", "DartLang.PubSpec.Serialization.Json.Tests\DartLang.PubSpec.Serialization.Json.Tests.csproj", "{FBFAD4EA-14CE-4016-AECD-03C36C27FB36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +41,18 @@ Global
 		{015F3E27-E0EF-434D-8923-B75DB48AB8D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{015F3E27-E0EF-434D-8923-B75DB48AB8D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{015F3E27-E0EF-434D-8923-B75DB48AB8D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DEBDCA3-1FAB-44D4-AAC5-E7F4ED8EC646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEBDCA3-1FAB-44D4-AAC5-E7F4ED8EC646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEBDCA3-1FAB-44D4-AAC5-E7F4ED8EC646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEBDCA3-1FAB-44D4-AAC5-E7F4ED8EC646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C65F5A61-B150-4A67-A880-8FCEE55E25E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C65F5A61-B150-4A67-A880-8FCEE55E25E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C65F5A61-B150-4A67-A880-8FCEE55E25E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C65F5A61-B150-4A67-A880-8FCEE55E25E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBFAD4EA-14CE-4016-AECD-03C36C27FB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBFAD4EA-14CE-4016-AECD-03C36C27FB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBFAD4EA-14CE-4016-AECD-03C36C27FB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBFAD4EA-14CE-4016-AECD-03C36C27FB36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3CAF1E43-0902-40BA-86CE-78E02F43F2F6} = {4475FBCC-7CA6-4E32-A328-DD70C745C5E0}

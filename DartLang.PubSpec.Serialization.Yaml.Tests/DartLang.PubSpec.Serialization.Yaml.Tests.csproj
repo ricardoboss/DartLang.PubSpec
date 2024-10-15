@@ -24,6 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\DartLang.PubSpec.Serialization.Yaml\DartLang.PubSpec.Serialization.Yaml.csproj" />
 		<ProjectReference Include="..\DartLang.PubSpec\DartLang.PubSpec.csproj"/>
 	</ItemGroup>
 

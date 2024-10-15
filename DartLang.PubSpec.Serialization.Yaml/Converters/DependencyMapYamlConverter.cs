@@ -4,11 +4,11 @@ using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
 
-namespace DartLang.PubSpec.Serialization;
+namespace DartLang.PubSpec.Serialization.Yaml.Converters;
 
-public class DependencyMapConverter : IYamlTypeConverter
+public class DependencyMapYamlConverter : IYamlTypeConverter
 {
-	public static readonly DependencyMapConverter Instance = new();
+	public static readonly DependencyMapYamlConverter Instance = new();
 
 	public bool Accepts(Type type) => type == typeof(DependencyMap);
 

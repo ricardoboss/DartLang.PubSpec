@@ -2,11 +2,11 @@ using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
 
-namespace DartLang.PubSpec.Serialization;
+namespace DartLang.PubSpec.Serialization.Yaml.Converters;
 
-public class PlatformsConverter : IYamlTypeConverter
+public class PlatformsYamlConverter : IYamlTypeConverter
 {
-	public static readonly PlatformsConverter Instance = new();
+	public static readonly PlatformsYamlConverter Instance = new();
 
 	public bool Accepts(Type type) => type == typeof(Platforms);
 

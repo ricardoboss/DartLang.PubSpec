@@ -1,34 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using DartLang.PubSpec.Dependencies;
-using DartLang.PubSpec.Serialization;
 using Semver;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
 
 namespace DartLang.PubSpec;
 
 [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global", Justification = "Instantiated by deserializer.")]
 public class PubSpec
 {
-	public static PubSpec Deserialize(string yaml)
-	{
-		using var reader = new StringReader(yaml);
-
-		return Deserialize(reader);
-	}
-
-	public static PubSpec Deserialize(StringReader reader)
-	{
-		var deserializer = new DeserializerBuilder()
-			.IgnoreUnmatchedProperties()
-			.WithNamingConvention(UnderscoredNamingConvention.Instance)
-			.WithPubSpecConverters()
-			.Build();
-
-		return deserializer.Deserialize<PubSpec>(reader);
-	}
-
 	[Required]
 	public required string Name { get; init; }
 

@@ -3,11 +3,11 @@ using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
 
-namespace DartLang.PubSpec.Serialization;
+namespace DartLang.PubSpec.Serialization.Yaml.Converters;
 
-public class SemVersionConverter : IYamlTypeConverter
+public class SemVersionYamlConverter : IYamlTypeConverter
 {
-	public static readonly SemVersionConverter Instance = new();
+	public static readonly SemVersionYamlConverter Instance = new();
 
 	public bool Accepts(Type type) => type == typeof(SemVersion) || type == typeof(SemVersionRange);
 

@@ -1,4 +1,4 @@
-namespace DartLang.PubSpec.Tests;
+namespace DartLang.PubSpec.Serialization.Yaml.Tests;
 
 public sealed class DeserializesExamples
 {
@@ -27,7 +27,7 @@ public sealed class DeserializesExamples
 	[TestCaseSource(nameof(ExamplesProvider))]
 	public void TestDeserializesExample(string packageName, string yaml)
 	{
-		var pubspec = PubSpec.Deserialize(yaml);
+		var pubspec = PubSpecYamlSerializer.Deserialize(yaml);
 
 		Assert.That(pubspec, Is.Not.Null);
 		Assert.That(pubspec.Name, Is.EqualTo(packageName));

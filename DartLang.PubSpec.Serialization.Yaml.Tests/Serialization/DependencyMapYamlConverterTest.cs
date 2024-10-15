@@ -1,12 +1,14 @@
 using DartLang.PubSpec.Dependencies;
 using DartLang.PubSpec.Serialization;
+using DartLang.PubSpec.Serialization.Yaml.Converters;
+using DartLang.PubSpec.Serialization.Yaml.Extensions;
 using Semver;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace DartLang.PubSpec.Tests.Serialization;
+namespace DartLang.PubSpec.Serialization.Yaml.Tests.Serialization;
 
-public sealed class DependencyMapConverterTest
+public sealed class DependencyMapYamlConverterTest
 {
 	[Test]
 	public void TestConvertSingleVersionDependency()
@@ -40,9 +42,9 @@ public sealed class DependencyMapConverterTest
 	{
 		// Arrange
 		const string yaml = """
-                            path: ^1.8.0
-                            intl: ^2.0.0
-                            """;
+		                    path: ^1.8.0
+		                    intl: ^2.0.0
+		                    """;
 
 		var input = new StringReader(yaml);
 		var deserializer = new DeserializerBuilder()
