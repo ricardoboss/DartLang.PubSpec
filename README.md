@@ -1,18 +1,27 @@
 # DartLang.PubSpec
 
-A library to read Dart pubspec.yaml files.
+A library to serialize and deserialize Dart pubspec.yaml files.
 
 ## Usage
 
 ```csharp
 var yaml = File.ReadAllText("pubspec.yaml");
-var pubspec = PubSpec.Deserialize(yaml);
+var pubspec = PubSpecYamlSerializer.Deserialize(yaml);
 
 Console.WriteLine($"Name: {pubspec.Name}");
 Console.WriteLine($"Version: {pubspec.Version}");
 ```
 
+You can also use the JSON serializer:
+
+```csharp
+var json = File.ReadAllText("pubspec.json");
+var pubspec = PubSpecJsonSerializer.Deserialize(json);
+```
+
 ### Custom Deserializer
+
+#### YAML
 
 You can also build your own deserializer using [`YamlDotNet`] directly:
 
@@ -24,6 +33,28 @@ var deserializer = new DeserializerBuilder()
     .Build();
 
 return deserializer.Deserialize<PubSpec>(reader);
+```
+
+#### JSON
+
+In case you need to use custom `JsonSerializerOptions`, you can reuse the converters from `DartLang.PubSpec.Serialization.Json`:
+
+```csharp
+var json = File.ReadAllText("pubspec.json");
+var options = new JsonSerializerOptions
+{
+    PropertyNameCaseInsensitive = true,
+    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+    Converters =
+    {
+        new SemVersionJsonConverter(),
+        new SemVersionRangeJsonConverter(),
+        new DependencyMapJsonConverter(),
+        new PlatformsJsonConverter(),
+    },
+};
+
+return JsonSerializer.Deserialize<PubSpec>(json, options);
 ```
 
 ### Serialization
