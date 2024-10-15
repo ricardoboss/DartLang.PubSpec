@@ -1,60 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-
-		<Version>1.1.0</Version>
-
-		<PackageId>DartLang.PubSpec</PackageId>
-		<Description>A library to parse Dart pubspec.yaml files</Description>
-
-		<Authors>Ricardo Boss</Authors>
-		<Copyright>2024 Ricardo Boss</Copyright>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-
-		<PackageProjectUrl>https://github.com/ricardoboss/DartLang.PubSpec</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/ricardoboss/DartLang.PubSpec</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="Semver" Version="2.3.0"/>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+		<PackageReference Include="Semver"/>
+		<PackageReference Include="Microsoft.SourceLink.GitHub">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-
-	<Target Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
-		<ReadLinesFromFile File="../CHANGELOG.md">
-			<Output TaskParameter="Lines" ItemName="ReleaseNoteLines"/>
-		</ReadLinesFromFile>
-		<PropertyGroup>
-			<PackageReleaseNotes>@(ReleaseNoteLines, '%0a')</PackageReleaseNotes>
-		</PropertyGroup>
-	</Target>
-
-	<ItemGroup>
-		<None Include="../README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-
-		<None Include="../LICENSE">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
 	</ItemGroup>
 
 </Project>
