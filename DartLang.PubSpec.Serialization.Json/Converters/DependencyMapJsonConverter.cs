@@ -171,6 +171,106 @@ public class DependencyMapJsonConverter : JsonConverter<DependencyMap>
 
 	public override void Write(Utf8JsonWriter writer, DependencyMap value, JsonSerializerOptions options)
 	{
-		throw new NotImplementedException();
+		writer.WriteStartObject();
+
+		foreach (var dependency in value)
+		{
+			writer.WritePropertyName(dependency.Key);
+
+			switch (dependency.Value)
+			{
+				case VersionDependency versionDependency:
+					// For a version dependency, write the version as a string
+					writer.WriteStringValue(versionDependency.Version == SemVersionRange.All
+						? "any"
+						: versionDependency.Version.ToString());
+					break;
+
+				case HostedDependency hostedDependency:
+					WriteHostedDependency(writer, hostedDependency);
+					break;
+
+				case GitDependency gitDependency:
+					WriteGitDependency(writer, gitDependency);
+					break;
+
+				case PathDependency pathDependency:
+					WritePathDependency(writer, pathDependency);
+					break;
+
+				case SdkDependency sdkDependency:
+					WriteSdkDependency(writer, sdkDependency);
+					break;
+
+				default:
+					throw new JsonException($"Unsupported dependency type: {dependency.Value.GetType()}");
+			}
+		}
+
+		writer.WriteEndObject();
+	}
+
+	private static void WriteSdkDependency(Utf8JsonWriter writer, SdkDependency sdkDependency)
+	{
+		writer.WriteStartObject();
+		writer.WritePropertyName("sdk");
+		writer.WriteStringValue(sdkDependency.Sdk);
+		writer.WriteEndObject();
+	}
+
+	private static void WritePathDependency(Utf8JsonWriter writer, PathDependency pathDependency)
+	{
+		writer.WriteStartObject();
+		writer.WritePropertyName("path");
+		writer.WriteStringValue(pathDependency.Path);
+		writer.WriteEndObject();
+	}
+
+	private static void WriteGitDependency(Utf8JsonWriter writer, GitDependency gitDependency)
+	{
+		writer.WriteStartObject();
+		writer.WritePropertyName("git");
+
+		if (gitDependency.Ref == null && gitDependency.Path == null)
+		{
+			// Simple git URL
+			writer.WriteStringValue(gitDependency.Git);
+		}
+		else
+		{
+			// Complex git dependency with ref or path
+			writer.WriteStartObject();
+			writer.WritePropertyName("url");
+			writer.WriteStringValue(gitDependency.Git);
+			if (!string.IsNullOrEmpty(gitDependency.Ref))
+			{
+				writer.WritePropertyName("ref");
+				writer.WriteStringValue(gitDependency.Ref);
+			}
+
+			if (!string.IsNullOrEmpty(gitDependency.Path))
+			{
+				writer.WritePropertyName("path");
+				writer.WriteStringValue(gitDependency.Path);
+			}
+
+			writer.WriteEndObject();
+		}
+
+		writer.WriteEndObject();
+	}
+
+	private static void WriteHostedDependency(Utf8JsonWriter writer, HostedDependency hostedDependency)
+	{
+		writer.WriteStartObject();
+		writer.WritePropertyName("hosted");
+		writer.WriteStringValue(hostedDependency.Hosted.ToString());
+		if (hostedDependency.Version != null)
+		{
+			writer.WritePropertyName("version");
+			writer.WriteStringValue(hostedDependency.Version.ToString());
+		}
+
+		writer.WriteEndObject();
 	}
 }

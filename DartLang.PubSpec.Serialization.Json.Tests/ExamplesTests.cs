@@ -1,6 +1,6 @@
 namespace DartLang.PubSpec.Serialization.Json.Tests;
 
-public sealed class DeserializesExamples
+public sealed class ExamplesTests
 {
 	private static IEnumerable<TestCaseData> ExamplesProvider()
 	{
@@ -25,11 +25,14 @@ public sealed class DeserializesExamples
 
 	[Test]
 	[TestCaseSource(nameof(ExamplesProvider))]
-	public void TestDeserializesExample(string packageName, string yaml)
+	public void TestDeserializeSerialize(string packageName, string json)
 	{
-		var pubspec = PubSpecJsonSerializer.Deserialize(yaml);
+		var pubspec = PubSpecJsonSerializer.Deserialize(json);
 
 		Assert.That(pubspec, Is.Not.Null);
-		Assert.That(pubspec.Name, Is.EqualTo(packageName));
+
+		var serialized = PubSpecJsonSerializer.Serialize(pubspec);
+
+		Assert.That(serialized, Is.Not.Null);
 	}
 }

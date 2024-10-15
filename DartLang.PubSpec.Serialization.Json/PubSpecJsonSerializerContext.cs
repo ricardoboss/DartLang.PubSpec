@@ -23,6 +23,7 @@ namespace DartLang.PubSpec.Serialization.Json;
 		typeof(PlatformsJsonConverter),
 	],
 	PropertyNameCaseInsensitive = true,
+	DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
 	PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase
 )]
-public partial class PubSpecJsonSerializerOptions : JsonSerializerContext;
+public partial class PubSpecJsonSerializerContext : JsonSerializerContext;

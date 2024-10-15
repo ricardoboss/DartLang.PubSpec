@@ -43,6 +43,44 @@ public class PlatformsJsonConverter : JsonConverter<Platforms>
 
 	public override void Write(Utf8JsonWriter writer, Platforms value, JsonSerializerOptions options)
 	{
-		throw new NotImplementedException();
+		writer.WriteStartObject();
+
+		if (value.Android)
+		{
+			writer.WritePropertyName("android");
+			writer.WriteNullValue();
+		}
+
+		if (value.iOS)
+		{
+			writer.WritePropertyName("ios");
+			writer.WriteNullValue();
+		}
+
+		if (value.Linux)
+		{
+			writer.WritePropertyName("linux");
+			writer.WriteNullValue();
+		}
+
+		if (value.MacOS)
+		{
+			writer.WritePropertyName("macos");
+			writer.WriteNullValue();
+		}
+
+		if (value.Windows)
+		{
+			writer.WritePropertyName("windows");
+			writer.WriteNullValue();
+		}
+
+		if (value.Web)
+		{
+			writer.WritePropertyName("web");
+			writer.WriteNullValue();
+		}
+
+		writer.WriteEndObject();
 	}
 }
