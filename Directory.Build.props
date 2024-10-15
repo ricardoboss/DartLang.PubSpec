@@ -4,13 +4,11 @@
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
 		<Version>2.0.0</Version>
+	</PropertyGroup>
 
+	<PropertyGroup>
 		<Description>A library to serialize and deserialize Dart pubspec.yaml files</Description>
 
 		<Authors>Ricardo Boss</Authors>
