@@ -1,3 +1,7 @@
+# 1.1.0
+
+* Upgraded to YamlDotNet 16.1.3
+
 # 1.0.0
 
 * Initial release 🎉
