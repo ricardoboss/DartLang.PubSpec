@@ -12,7 +12,7 @@ public class DependencyMapConverter : IYamlTypeConverter
 
 	public bool Accepts(Type type) => type == typeof(DependencyMap);
 
-	public object? ReadYaml(IParser parser, Type type)
+	public object? ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
 	{
 		if (!Accepts(type))
 			throw new YamlException($"Cannot convert type {type.Name} to {nameof(DependencyMap)}");
@@ -158,7 +158,7 @@ public class DependencyMapConverter : IYamlTypeConverter
 		};
 	}
 
-	public void WriteYaml(IEmitter emitter, object? value, Type type)
+	public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer serializer)
 	{
 		if (value is not DependencyMap map)
 			throw new YamlException($"Cannot serialize {value?.GetType().Name}");

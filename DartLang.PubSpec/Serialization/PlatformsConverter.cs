@@ -10,7 +10,7 @@ public class PlatformsConverter : IYamlTypeConverter
 
 	public bool Accepts(Type type) => type == typeof(Platforms);
 
-	public object? ReadYaml(IParser parser, Type type)
+	public object ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
 	{
 		parser.Consume<MappingStart>();
 
@@ -36,7 +36,7 @@ public class PlatformsConverter : IYamlTypeConverter
 		return platforms;
 	}
 
-	public void WriteYaml(IEmitter emitter, object? value, Type type)
+	public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer serializer)
 	{
 		if (value is not Platforms platforms)
 			throw new YamlException($"Cannot serialize {value?.GetType().Name}");

@@ -11,7 +11,7 @@ public class SemVersionConverter : IYamlTypeConverter
 
 	public bool Accepts(Type type) => type == typeof(SemVersion) || type == typeof(SemVersionRange);
 
-	public object? ReadYaml(IParser parser, Type type)
+	public object? ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
 	{
 		if (type == typeof(SemVersion))
 			return ReadSemVersion(parser);
@@ -44,7 +44,7 @@ public class SemVersionConverter : IYamlTypeConverter
 		throw new YamlException("Invalid semantic version range: " + raw.Value);
 	}
 
-	public void WriteYaml(IEmitter emitter, object? value, Type type)
+	public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer serializer)
 	{
 		switch (value)
 		{
