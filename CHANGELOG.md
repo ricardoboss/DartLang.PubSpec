@@ -1,3 +1,8 @@
+# Unreleased
+
+* Split de-/serialization for YAML into a separate package: `DartLang.PubSpec.Serialization.Yaml`
+* Added support for deserializing JSON files using `DartLang.PubSpec.Serialization.Json`
+
 # 1.1.0
 
 * Upgraded to YamlDotNet 16.1.3
