@@ -26,7 +26,6 @@ jobs:
         run: dotnet build -c Release
       - name: Publish Blism Package
         run: dotnet nuget push DartLang.PubSpec/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-      - name: Publish Blism.Language.CSharp Package
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
