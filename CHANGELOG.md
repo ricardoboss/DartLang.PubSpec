@@ -1,4 +1,4 @@
-# Unreleased
+# 3.0.0
 
 * Breaking: Renamed `PubSpecJsonSerializer` to `PubSpecJsonConverter`
 * Breaking: Renamed `PubSpecYamlSerializer` to `PubSpecYamlConverter`
