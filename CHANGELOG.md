@@ -1,7 +1,11 @@
 # Unreleased
 
+* Added more overloads for `PubSpecYamlSerializer::Deserialize` that accept `Stream` and `TextReader`
+
+# 2.0.0
+
 * Split de-/serialization for YAML into a separate package: `DartLang.PubSpec.Serialization.Yaml`
-* Added support for deserializing JSON files using `DartLang.PubSpec.Serialization.Json`
+* Added support for de-/serializing JSON files using `DartLang.PubSpec.Serialization.Json`
 
 # 1.1.0
 

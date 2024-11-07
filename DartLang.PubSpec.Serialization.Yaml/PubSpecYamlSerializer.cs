@@ -1,9 +1,12 @@
-﻿using DartLang.PubSpec.Serialization.Yaml.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+using DartLang.PubSpec.Serialization.Yaml.Extensions;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
 namespace DartLang.PubSpec.Serialization.Yaml;
 
+[SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Entrypoints")]
+[SuppressMessage("ReSharper", "MemberCanBePrivate.Global", Justification = "Entrypoints")]
 public static class PubSpecYamlSerializer
 {
 	public static PubSpec Deserialize(string yaml)
@@ -13,7 +16,14 @@ public static class PubSpecYamlSerializer
 		return Deserialize(reader);
 	}
 
-	public static PubSpec Deserialize(StringReader reader)
+	public static PubSpec Deserialize(Stream yaml)
+	{
+		using var reader = new StreamReader(yaml);
+
+		return Deserialize(reader);
+	}
+
+	public static PubSpec Deserialize(TextReader reader)
 	{
 		var deserializer = new DeserializerBuilder()
 			.IgnoreUnmatchedProperties()
