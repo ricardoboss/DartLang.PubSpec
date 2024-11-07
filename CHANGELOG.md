@@ -1,3 +1,8 @@
+# Unreleased
+
+* (internal) Upgraded test packages
+* Updated SemVer to 3.0.0
+
 # 3.0.0
 
 * Breaking: Renamed `PubSpecJsonSerializer` to `PubSpecJsonConverter`
