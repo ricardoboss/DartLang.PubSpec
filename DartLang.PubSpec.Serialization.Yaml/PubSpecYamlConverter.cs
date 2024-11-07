@@ -23,9 +23,10 @@ public static class PubSpecYamlConverter
 		return Deserialize(reader);
 	}
 
-	public static async Task<PubSpec> DeserializeAsync(Stream utf8Yaml, CancellationToken cancellationToken = default)
+	public static async Task<PubSpec> DeserializeAsync(Stream utf8Yaml, bool leaveOpen = true,
+		CancellationToken cancellationToken = default)
 	{
-		using var reader = new StreamReader(utf8Yaml);
+		using var reader = new StreamReader(utf8Yaml, leaveOpen: leaveOpen);
 
 		var yamlString = await reader.ReadToEndAsync(cancellationToken);
 
@@ -53,7 +54,8 @@ public static class PubSpecYamlConverter
 		return serializer.Serialize(pubspec);
 	}
 
-	public static async Task SerializeAsync(Stream utf8Yaml, PubSpec pubspec, CancellationToken cancellationToken = default)
+	public static async Task SerializeAsync(Stream utf8Yaml, PubSpec pubspec,
+		CancellationToken cancellationToken = default)
 	{
 		cancellationToken.ThrowIfCancellationRequested();
 

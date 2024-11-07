@@ -2,6 +2,7 @@
 
 * (internal) Upgraded test packages
 * Updated SemVer to 3.0.0
+* `PubSpecYamlConverter::DeserializeAsync` now leaves the stream open by default (configurable using `leaveOpen` parameter)
 
 # 3.0.0
 
