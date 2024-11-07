@@ -3,9 +3,9 @@ using YamlDotNet.Serialization;
 
 namespace DartLang.PubSpec.Serialization.Yaml.Extensions;
 
-public static class DeserializerBuilderExtensions
+public static class SerializerSkeletonExtensions
 {
-	public static DeserializerBuilder WithPubSpecConverters(this DeserializerBuilder builder)
+	public static T WithPubSpecConverters<T>(this BuilderSkeleton<T> builder) where T : BuilderSkeleton<T>
 	{
 		return builder
 			.WithTypeConverter(SemVersionYamlConverter.Instance)

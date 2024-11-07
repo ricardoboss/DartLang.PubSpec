@@ -27,7 +27,7 @@ public sealed class DeserializesExamples
 	[TestCaseSource(nameof(ExamplesProvider))]
 	public void TestDeserializesExample(string packageName, string yaml)
 	{
-		var pubspec = PubSpecYamlSerializer.Deserialize(yaml);
+		var pubspec = PubSpecYamlConverter.Deserialize(yaml);
 
 		Assert.That(pubspec, Is.Not.Null);
 		Assert.That(pubspec.Name, Is.EqualTo(packageName));

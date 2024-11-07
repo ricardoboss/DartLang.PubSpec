@@ -1,6 +1,8 @@
 # Unreleased
 
-* Added more overloads for `PubSpecYamlSerializer::Deserialize` that accept `Stream` and `TextReader`
+* Breaking: Renamed `PubSpecJsonSerializer` to `PubSpecJsonConverter`
+* Breaking: Renamed `PubSpecYamlSerializer` to `PubSpecYamlConverter`
+* Added more and also async overloads for de-/serialization in `PubSpecJsonConverter` and `PubSpecYamlConverter`
 
 # 2.0.0
 

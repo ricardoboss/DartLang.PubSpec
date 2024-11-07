@@ -27,11 +27,11 @@ public sealed class ExamplesTests
 	[TestCaseSource(nameof(ExamplesProvider))]
 	public void TestDeserializeSerialize(string packageName, string json)
 	{
-		var pubspec = PubSpecJsonSerializer.Deserialize(json);
+		var pubspec = PubSpecJsonConverter.Deserialize(json);
 
 		Assert.That(pubspec, Is.Not.Null);
 
-		var serialized = PubSpecJsonSerializer.Serialize(pubspec);
+		var serialized = PubSpecJsonConverter.Serialize(pubspec);
 
 		Assert.That(serialized, Is.Not.Null);
 	}
