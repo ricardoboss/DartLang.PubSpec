@@ -1,3 +1,7 @@
+# Unreleased
+
+* Added `workspaces` property
+
 # 3.0.1
 
 * (internal) Upgraded test packages

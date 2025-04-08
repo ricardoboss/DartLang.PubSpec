@@ -44,4 +44,6 @@ public class PubSpec
 	public string[]? IgnoredAdvisories { get; init; }
 
 	public Environment? Environment { get; init; }
+
+	public string[]? Workspace { get; init; }
 }
