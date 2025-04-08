@@ -31,5 +31,9 @@ public sealed class DeserializesExamples
 
 		Assert.That(pubspec, Is.Not.Null);
 		Assert.That(pubspec.Name, Is.EqualTo(packageName));
+
+		var serialized = PubSpecYamlConverter.Serialize(pubspec);
+
+		Assert.That(serialized, Is.Not.Null);
 	}
 }

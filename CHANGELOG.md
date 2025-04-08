@@ -2,6 +2,7 @@
 
 * Added `workspaces` property
 * Unmapped members should be skipped (JSON)
+* Implemented basic serialization for YAML
 
 # 3.0.1
 

@@ -38,9 +38,59 @@ public class PlatformsYamlConverter : IYamlTypeConverter
 
 	public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer serializer)
 	{
-		if (value is not Platforms platforms)
+		if (type != typeof(Platforms))
 			throw new YamlException($"Cannot serialize {value?.GetType().Name}");
 
-		throw new NotImplementedException();
+		if (value is not Platforms platforms)
+		{
+			emitter.Emit(new Scalar(string.Empty));
+			return;
+		}
+
+		emitter.Emit(new MappingStart());
+
+		if (platforms.Android)
+		{
+			emitter.Emit(new Scalar("android"));
+			emitter.Emit(new MappingStart());
+			emitter.Emit(new MappingEnd());
+		}
+
+		if (platforms.iOS)
+		{
+			emitter.Emit(new Scalar("ios"));
+			emitter.Emit(new MappingStart());
+			emitter.Emit(new MappingEnd());
+		}
+
+		if (platforms.Linux)
+		{
+			emitter.Emit(new Scalar("linux"));
+			emitter.Emit(new MappingStart());
+			emitter.Emit(new MappingEnd());
+		}
+
+		if (platforms.MacOS)
+		{
+			emitter.Emit(new Scalar("macos"));
+			emitter.Emit(new MappingStart());
+			emitter.Emit(new MappingEnd());
+		}
+
+		if (platforms.Windows)
+		{
+			emitter.Emit(new Scalar("windows"));
+			emitter.Emit(new MappingStart());
+			emitter.Emit(new MappingEnd());
+		}
+
+		if (platforms.Web)
+		{
+			emitter.Emit(new Scalar("web"));
+			emitter.Emit(new MappingStart());
+			emitter.Emit(new MappingEnd());
+		}
+
+		emitter.Emit(new MappingEnd());
 	}
 }

@@ -71,7 +71,7 @@ public class DependencyMapYamlConverter : IYamlTypeConverter
 		return dependency;
 	}
 
-	private static SemVersionRange? InterpretVersion(Scalar scalar)
+	private static SemVersionRange InterpretVersion(Scalar scalar)
 	{
 		return scalar.Value.Equals("any", StringComparison.InvariantCultureIgnoreCase)
 			? SemVersionRange.All
@@ -160,9 +160,119 @@ public class DependencyMapYamlConverter : IYamlTypeConverter
 
 	public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer serializer)
 	{
-		if (value is not DependencyMap map)
+		if (type != typeof(DependencyMap))
 			throw new YamlException($"Cannot serialize {value?.GetType().Name}");
 
-		throw new NotImplementedException();
+		if (value is not DependencyMap map)
+		{
+			emitter.Emit(new Scalar(string.Empty));
+
+			return;
+		}
+
+		emitter.Emit(new MappingStart());
+
+		foreach (var dependency in map)
+		{
+			emitter.Emit(new Scalar(dependency.Key));
+
+			switch (dependency.Value)
+			{
+				case VersionDependency versionDependency:
+					emitter.Emit(new Scalar(versionDependency.Version.ToString()));
+					break;
+
+				case HostedDependency hostedDependency:
+					WriteHostedDependency(emitter, hostedDependency);
+					break;
+
+				case GitDependency gitDependency:
+					WriteGitDependency(emitter, gitDependency);
+					break;
+
+				case PathDependency pathDependency:
+					WritePathDependency(emitter, pathDependency);
+					break;
+
+				case SdkDependency sdkDependency:
+					WriteSdkDependency(emitter, sdkDependency);
+					break;
+
+				default:
+					throw new YamlException($"Unsupported dependency type: {dependency.Value.GetType()}");
+			}
+		}
+
+		emitter.Emit(new MappingEnd());
+	}
+
+	private static void WriteSdkDependency(IEmitter emitter, SdkDependency sdkDependency)
+	{
+		emitter.Emit(new MappingStart());
+		emitter.Emit(new Scalar("sdk"));
+		emitter.Emit(new Scalar(sdkDependency.Sdk));
+		emitter.Emit(new MappingEnd());
+	}
+
+	private static void WritePathDependency(IEmitter emitter, PathDependency pathDependency)
+	{
+		emitter.Emit(new MappingStart());
+		emitter.Emit(new Scalar("path"));
+		emitter.Emit(new Scalar(pathDependency.Path));
+		emitter.Emit(new MappingEnd());
+	}
+
+	private static void WriteGitDependency(IEmitter emitter, GitDependency gitDependency)
+	{
+		emitter.Emit(new MappingStart());
+		emitter.Emit(new Scalar("git"));
+
+		if (gitDependency.Ref is not null && gitDependency.Path is not null)
+		{
+			// Complex git dependency with ref or path
+			emitter.Emit(new MappingStart());
+			emitter.Emit(new Scalar("url"));
+			emitter.Emit(new Scalar(gitDependency.Git));
+			if (gitDependency.Ref is not null)
+			{
+				emitter.Emit(new Scalar("ref"));
+				emitter.Emit(new Scalar(gitDependency.Ref));
+			}
+
+			if (gitDependency.Path is not null)
+			{
+				emitter.Emit(new Scalar("path"));
+				emitter.Emit(new Scalar(gitDependency.Path));
+			}
+
+			emitter.Emit(new MappingEnd());
+		}
+		else if (gitDependency.Ref is not null)
+		{
+			// Simple git URL
+			emitter.Emit(new Scalar(gitDependency.Git));
+			emitter.Emit(new Scalar(gitDependency.Ref));
+		}
+		else
+		{
+			// Simple git URL
+			emitter.Emit(new Scalar(gitDependency.Git));
+		}
+
+		emitter.Emit(new MappingEnd());
+	}
+
+	private static void WriteHostedDependency(IEmitter emitter, HostedDependency hostedDependency)
+	{
+		emitter.Emit(new MappingStart());
+		emitter.Emit(new Scalar("hosted"));
+		emitter.Emit(new Scalar(hostedDependency.Hosted.ToString()));
+		if (hostedDependency.Version is not null)
+		{
+			emitter.Emit(new Scalar("version"));
+			emitter.Emit(new Scalar(hostedDependency.Version.ToString()));
+		}
+
+		emitter.Emit(new MappingEnd());
 	}
 }

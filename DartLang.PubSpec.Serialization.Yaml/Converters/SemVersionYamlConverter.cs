@@ -54,6 +54,9 @@ public class SemVersionYamlConverter : IYamlTypeConverter
 			case SemVersionRange semVersionRange:
 				WriteSemVersionRange(emitter, semVersionRange);
 				break;
+			case null:
+				emitter.Emit(new Scalar(string.Empty));
+				break;
 			default:
 				throw new NotSupportedException("Cannot serialize type " + type);
 		}
