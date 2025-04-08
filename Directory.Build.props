@@ -5,14 +5,14 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 
-		<Version>3.0.1</Version>
+		<Version>3.1.0</Version>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<Description>A library to serialize and deserialize Dart pubspec.yaml files</Description>
 
 		<Authors>Ricardo Boss</Authors>
-		<Copyright>2024 Ricardo Boss</Copyright>
+		<Copyright>2025 Ricardo Boss</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 

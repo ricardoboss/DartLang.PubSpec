@@ -1,4 +1,4 @@
-# Unreleased
+# 3.1.0
 
 * Added `workspaces` property
 * Unmapped members should be skipped (JSON)
