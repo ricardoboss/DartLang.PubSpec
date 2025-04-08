@@ -24,6 +24,7 @@ namespace DartLang.PubSpec.Serialization.Json;
 	],
 	PropertyNameCaseInsensitive = true,
 	DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
-	PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase
+	PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase,
+	UnmappedMemberHandling = JsonUnmappedMemberHandling.Skip
 )]
 public partial class PubSpecJsonSerializerContext : JsonSerializerContext;
